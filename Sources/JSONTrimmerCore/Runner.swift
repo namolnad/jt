@@ -3,7 +3,23 @@ import Foundation
 
 @main
 struct Runner: ParsableCommand {
-    @Argument
+    @Argument(help: """
+Instructions as to how the input JSON should be transformed.
+
+Transform notation is composed of nested and/or comma-separated transform segments, the rules for which are as follows:
+1. A top-level transform should always be enclosed in an array or object transform. i.e. '{}' or '[{}]'
+2. Valid segments include:
+  a. `identity` -> 'keyname'
+     Represented by only the 'keyname' itself.
+  b. `object` -> 'keyname{<NESTED-SEGMENTS>}'
+     The keyname followed by curly brackets with nested segments enclosed and separated by commas.
+  c. `array` -> 'keyname[{<NESTED-SEGMENTS>}]'
+     The keyname followed by square and curly brackets with nested segments enclosed and separated by commas.
+
+An example transform might be '{body{key1,key2{key3},key4}}' which would perform the below transformation:
+    Input: {"body":{"key1":[1,2,3],"key2":{"key3":3,"key5":"string"},"key4":"value","key5":[]}}
+    Output: {"body":{"key1":[1,2,3],"key2":{"key3":3},"key4":"value"}
+""")
     var transform: String
 
     @Option(transform: { input in
