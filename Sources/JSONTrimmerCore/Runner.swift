@@ -24,6 +24,9 @@ struct Runner: ParsableCommand {
     @Flag(inversion: .prefixedNo)
     var sortKeys = false
 
+    @Flag(help: "Skips decoding/encoding when top level transform is identity. NOTE: JSON will not be validated and --pretty-print and --sort-keys flags will not be respected.")
+    var skipCodingOnIdentity = false
+
     func run() throws {
         let data: Data
         switch input {
@@ -42,7 +45,8 @@ struct Runner: ParsableCommand {
         let configuration: Configuration = .init(
             transform: try JSONTrimmer.transformParser.parse(transform[...]),
             prettyPrint: prettyPrint,
-            sortKeys: sortKeys
+            sortKeys: sortKeys,
+            skipCodingOnIdentity: skipCodingOnIdentity
         )
 
         let output = try JSONTrimmer.run(input: data, configuration: configuration)
