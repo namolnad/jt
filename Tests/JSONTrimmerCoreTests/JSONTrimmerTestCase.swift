@@ -1,7 +1,7 @@
 import XCTest
-@testable import JSONTrimmer
+@testable import JSONTrimmerCore
 
-final class JSONTrimmerTestCase: XCTestCase {
+final class JSONTrimmerCoreTestCase: XCTestCase {
     func testParse() throws {
         let schema = "{body{myArray[{field1,field2{subfield1,subfield2[{subsub2}]}}],myField}}"
         let expected: Transform = .object(
