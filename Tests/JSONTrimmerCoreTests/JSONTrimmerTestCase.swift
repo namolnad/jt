@@ -31,6 +31,21 @@ final class JSONTrimmerCoreTestCase: XCTestCase {
         XCTAssertEqual(try JSONTrimmer.transformParser.parse(schema[...]), expected)
     }
 
+    func testParseArray() throws {
+        let schema = "[{body{field1}}]"
+        XCTAssertEqual(
+            try JSONTrimmer.transformParser.parse(schema[...]),
+            .array(.object([.init(key: "body", transform: .object([.init(key: "field1", transform: .identity)]))]))
+        )
+    }
+
+    func testParseIdentity() throws {
+        let schemaArrayIdentity = "[{}]"
+        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaArrayIdentity[...]), .array(.identity))
+        let schemaObjectIdentity = "{}"
+        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaObjectIdentity[...]), .object([]))
+    }
+
     func testTransform() throws {
         let schema = "{body{myArray[{field1,field2{subfield1,subfield2[{subsub2}]}}],myField}}"
         let transform = try JSONTrimmer.transformParser.parse(schema[...])

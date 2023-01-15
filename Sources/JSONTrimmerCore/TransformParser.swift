@@ -4,14 +4,35 @@ import Parsing
 extension JSONTrimmer {
     static var transformParser: some Parser<Substring, Transform> {
         Parse {
-            "{"
-            Skip { Whitespace() }
-            TransformsParser()
-            Skip { Whitespace() }
-            "}"
+            OneOf {
+                Parse {
+                    "{}"
+                }
+                .map { Transform.identity }
+                Parse {
+                    "[{}]"
+                }
+                .map { Transform.identity }
+                Parse {
+                    "[{"
+                    Skip { Whitespace() }
+                    TransformsParser()
+                    Skip { Whitespace() }
+                    "}]"
+                }
+                .map { Transform.array(.object($0)) }
+                Parse {
+                    "{"
+                    Skip { Whitespace() }
+                    TransformsParser()
+                    Skip { Whitespace() }
+                    "}"
+                }
+                .map { Transform.object($0) }
+            }
             End()
         }
-        .map { Transform.object($0) }
+
     }
 }
 
