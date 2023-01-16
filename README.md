@@ -25,7 +25,7 @@ As mentioned above, `jt` will take the JSON input and transform it based on the 
 
 ## Installation
 #### Package installer
-Download and run the most recent [release](https://github.com/namolnad/jt)'s jt.pkg file and follow the on-screen instructions
+Download and run the [latest release's](https://github.com/namolnad/jt/releases/latest) `jt.pkg` installer file and follow the on-screen instructions.
 #### Mint
 1. Install [mint](https://github.com/yonaskolb/Mint) via `brew install mint`
 1. Install `jt` via `mint install namolnad/jt@main`
