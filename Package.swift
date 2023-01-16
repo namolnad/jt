@@ -6,7 +6,7 @@ let package = Package(
     name: "JSONTrimmer",
     platforms: [.macOS(.v10_15)],
     products: [
-        .executable(name: "json-trimmer", targets: ["JSONTrimmerCore"]),
+        .executable(name: "jt", targets: ["JSONTrimmerCore"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
