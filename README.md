@@ -24,12 +24,12 @@ Here's a quick example of some basic usage:
 As mentioned above, `jt` will take the JSON input and transform it based on the schema provided, outputting only the selected keys and values.
 
 ## Installation
+#### Package installer
+Download and run the most recent [release](https://github.com/namolnad/jt)'s jt.pkg file and follow the on-screen instructions
 #### Mint
 1. Install [mint](https://github.com/yonaskolb/Mint) via `brew install mint`
-1. Install `jt` via `mint install namolnad/json-trimmer@main`
+1. Install `jt` via `mint install namolnad/jt@main`
 1. Add ~/.mint/bin to your PATH
-#### Package installer
-Coming soon...
 #### Homebrew
 Coming soon...
 
