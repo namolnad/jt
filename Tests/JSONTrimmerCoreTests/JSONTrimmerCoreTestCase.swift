@@ -41,9 +41,9 @@ final class JSONTrimmerCoreTestCase: XCTestCase {
 
     func testParseIdentity() throws {
         let schemaArrayIdentity = "[{}]"
-        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaArrayIdentity[...]), .array(.identity))
+        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaArrayIdentity[...]), .identity)
         let schemaObjectIdentity = "{}"
-        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaObjectIdentity[...]), .object([]))
+        XCTAssertEqual(try JSONTrimmer.transformParser.parse(schemaObjectIdentity[...]), .identity)
     }
 
     func testTransform() throws {
@@ -159,7 +159,7 @@ final class JSONTrimmerCoreTestCase: XCTestCase {
 }
 """
         XCTAssertEqual(
-            try JSONTrimmer.run(input: .init(input.utf8), configuration: .init(transform: transform, prettyPrint: true, sortKeys: true)),
+            try JSONTrimmer.run(input: .init(input.utf8), configuration: .init(transform: transform, prettyPrint: true, sortKeys: true, skipCodingOnIdentity: false)),
             """
 {
   "body" : {
