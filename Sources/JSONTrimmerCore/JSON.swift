@@ -97,7 +97,6 @@ extension JSON: Decodable {
     }
 }
 
-#if DEBUG
 extension JSON: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self = .string(value)
@@ -182,4 +181,3 @@ extension JSON: Encodable {
         }
     }
 }
-#endif
