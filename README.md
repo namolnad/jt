@@ -27,12 +27,12 @@ As mentioned above, `jt` will take the JSON input and transform it based on the 
 #### Package installer
 Download and run the [latest release's](https://github.com/namolnad/jt/releases/latest) `jt.pkg` installer file and follow the on-screen instructions.
 #### Mint
-1. Install [mint](https://github.com/yonaskolb/Mint) via `brew install mint`
-1. Install `jt` via `mint install namolnad/jt@main`
-1. Add ~/.mint/bin to your PATH
+1. Install [mint](https://github.com/yonaskolb/Mint): `brew install mint`
+1. Install `jt`: `mint install namolnad/jt@main`
+1. Add `~/.mint/bin` to your PATH
 #### Homebrew
-1. brew tap namolnad/formulae
-1. brew install jt
+1. Add tap: `brew tap namolnad/formulae`
+1. Install `jt`: `brew install jt`
 
 ## Ok... why jt?
 JSON responses from REST endpoints often become bloated over time, and in many cases, mobile clients only need a small portion of the response — a response which may have been originally intended for a desktop interface. `jt` was created to address this issue by allowing clients to select only the portion of a network response that they need. This has the benefit of reducing the amount of data sent over the wire.
